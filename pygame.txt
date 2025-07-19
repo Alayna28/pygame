@@ -1,0 +1,61 @@
+task1:
+
+
+#import necessary libraries
+import pygame
+#initializing required modules
+pygame.init()
+
+#setup window geometry
+screen = pygame.display.set_mode((400,500))
+
+#create a loop to run till the game is quit by the user
+done = False
+while not done:
+  #clear the event queue
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        #make the changes visible
+        pygame.display.flip()
+    
+
+
+
+
+task2:
+
+import pygame
+
+#initialize pygame and screen dimensions
+pygame.init()
+SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
+
+display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption('adding images and bg images')
+bg_image = pygame.transform.scale(pygame.image.load('background.png').convert(), (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+world_image = pygame.transform.scale(pygame.image.load('world.png').convert_alpha(), (200, 200))
+world_rect = world_image.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2 - 30))
+
+text = pygame.font.Font(None, 30).render('Hello World', True, pygame.Color('black'))
+text_rect = text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2 + 110))
+
+def game_loop():
+  clock = pygame.time.Clock() 
+  running = True
+  while running:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        running = False
+
+    display_surface.blit(bg_image, (0, 0))
+    display_surface.blit(world_image, world_rect)
+    display_surface.blit(text, text_rect)
+    pygame.display.flip()
+    clock.tick(30)
+  pygame.quit()
+if __name__ == '__main__':
+  game_loop()
+  
+  
